@@ -7,6 +7,7 @@ class Database {
     private $baseName;
     private $port;
     private $Debug;
+    private $socket;
     function __construct($params = array()) {
         $this->conn = false;
         $this->host = empty($params['host']) ? getenv('DB_HOST') : $params['host'];
@@ -14,6 +15,7 @@ class Database {
         $this->password = empty($params['password']) ? getenv('DB_PASSWORD') : $params['password']; //password
         $this->baseName = empty($params['dbname']) ? getenv('DB_DATABASE') : $params['dbname']; //name of your database
         $this->port = empty($params['port']) ? getenv('DB_PORT') : $params['port'];
+        $this->socket = empty($params['port']) ? getenv('DB_SOCKET') : $params['socket'];
         $this->debug = true;
         $this->connect();
     }

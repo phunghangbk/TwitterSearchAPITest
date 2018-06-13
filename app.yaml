@@ -11,4 +11,4 @@ env_variables:
   DB_DATABASE: retrievetweets
   DB_USERNAME: root
   DB_PASSWORD: 27051993Hang
-  DB_SOCKET: "/cloudsql/retrievetweets:asia-northeast1:retrievetweetsdevelope"
+  DB_SOCKET: "/cloudsql/twittersearchapitest:asia-northeast1:twittersearchapitest"

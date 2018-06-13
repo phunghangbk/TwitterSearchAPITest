@@ -7,6 +7,7 @@ class DatabasePDO {
     private $baseName;
     private $port;
     private $Debug;
+    private $socket;
     function __construct($params = array()) {
         $this->conn = false;
         $this->host = empty($params['host']) ? getenv('DB_HOST') : $params['host'];
@@ -14,6 +15,7 @@ class DatabasePDO {
         $this->password = empty($params['password']) ? getenv('DB_PASSWORD') : $params['password']; //password
         $this->baseName = empty($params['dbname']) ? getenv('DB_DATABASE') : $params['dbname']; //name of your database
         $this->port = empty($params['port']) ? getenv('DB_PORT') : $params['port'];
+        $this->socket = empty($params['socket']) ? getenv('DB_SOCKET') : $params['socket'];
         $this->debug = true;
         $this->connect();
     }
@@ -25,7 +27,13 @@ class DatabasePDO {
     function connect() {
         if (!$this->conn) {
             try {
-                $this->conn = new PDO('mysql:host='.$this->host.';dbname='.$this->baseName.'', $this->user, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4'));  
+                if (! empty($this->socket)) {
+                    $q = 'mysql:unix_socket=' . $this->socket . ';host='.$this->host . ';dbname=' . $this->baseName. '';
+                } else {
+                    $q = 'mysql:host='.$this->host.';dbname='.$this->baseName.'';
+                }
+
+                $this->conn = new PDO($q, $this->user, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4'));  
             }
             catch (Exception $e) {
                 die('Erreur : ' . $e->getMessage());
