@@ -10,7 +10,9 @@ $consumer_secret="2KpQ6nDjg8PurboMu4Ws4oybZsBIJDhEKizW9EJuY1akjvfLbC";
 $twitter = new RetrieveTweet();
 $request = request();
 $result = $twitter->getTweets($access_token, $access_token_secret, $consumer_key, $consumer_secret, $request);
-echo $result;
+$result = json_decode($result, true);
+
+echo $result['message'];
 
 function request()
 {
