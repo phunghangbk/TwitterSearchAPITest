@@ -50,7 +50,6 @@ class Tweet {
         $after_one_date = $after_one_date->format('Y-m-d');
 
         $query = 'DELETE FROM ' . $this->table . ' WHERE created_at >= "' . $now . ' 00:00:00" AND created_at < "' . $after_one_date . ' 00:00:00"';
-        var_dump($query);
         try {
             if (! $this->bdd->execute($query)) {
                 return json_encode(['error' => 'Cannot delete data!']);

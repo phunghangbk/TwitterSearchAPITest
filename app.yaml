@@ -3,8 +3,11 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /.*
+- url: /
   script: index.php
+- url: /deleteTweets
+  script: deleteTweets.php
+
 env_variables:
   ## Set these environment variables according to your CloudSQL configuration.
   DB_HOST: 127.0.0.1
