@@ -14,6 +14,6 @@ echo $result;
 function request()
 {
 	$result = array();
-	parse_str($_SERVER['QUERY_STRING'], $result);
+	parse_str(getenv('QUERY_STRING'), $result);
 	return $result;
 }

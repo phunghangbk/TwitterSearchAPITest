@@ -51,7 +51,7 @@ class Tweet {
 
         $query = 'DELETE FROM ' . $this->table . ' WHERE created_at >= "' . $now . ' 00:00:00" AND created_at < "' . $after_one_date . ' 00:00:00"';
         try {
-            if (! $this->bdd->execute($query)) {
+            if (! $this->bdd->executeDelete($query)) {
                 return json_encode(['error' => 'Cannot delete data!']);
             } else {
                 return json_encode(['message' => 'Delete data success!']);

@@ -32,7 +32,6 @@ class DatabasePDO {
                     $q = 'mysql:unix_socket=' . $this->socket . ';dbname=' . $this->baseName. '';
                 } else {
                     $q = 'mysql:host='.$this->host.';dbname='.$this->baseName.'';
-             
                 }
 
                 $this->conn = new PDO($q, $this->user, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4'));
@@ -98,6 +97,19 @@ class DatabasePDO {
             echo '<br />';
             echo 'error SQL: '.$query;
             die();
+        }
+
+        return $response;
+    }
+    
+    function executeDelete($query) {
+        if (!$response = $this->conn->exec($query)) {
+            echo 'PDO::errorInfo():';
+            echo '<br />';
+            echo 'SQL: '.$query;
+            echo '<br />';
+            echo 'cannot delete data';
+            echo '<br />';
         }
 
         return $response;
