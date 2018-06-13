@@ -1,0 +1,14 @@
+runtime: php55
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /.*
+  script: index.php
+env_variables:
+  ## Set these environment variables according to your CloudSQL configuration.
+  DB_HOST: localhost
+  DB_DATABASE: retrievetweets
+  DB_USERNAME: root
+  DB_PASSWORD: 27051993Hang
+  DB_SOCKET: "/cloudsql/retrievetweets:asia-northeast1:retrievetweetsdevelope"
