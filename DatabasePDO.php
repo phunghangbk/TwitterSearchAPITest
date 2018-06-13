@@ -9,6 +9,7 @@ class DatabasePDO {
     private $Debug;
     private $socket;
     function __construct($params = array()) {
+    	
         $this->conn = false;
         $this->host = empty($params['host']) ? getenv('DB_HOST') : $params['host'];
         $this->user = empty($params['username']) ? getenv('DB_USERNAME') : $params['username']; //username
@@ -28,15 +29,18 @@ class DatabasePDO {
         if (!$this->conn) {
             try {
                 if (! empty($this->socket)) {
-                    $q = 'mysql:unix_socket=' . $this->socket . ';host='.$this->host . ';dbname=' . $this->baseName. '';
+                    $q = 'mysql:unix_socket=' . $this->socket . ';dbname=' . $this->baseName. '';
                 } else {
                     $q = 'mysql:host='.$this->host.';dbname='.$this->baseName.'';
+             
                 }
 
-                $this->conn = new PDO($q, $this->user, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4'));  
+                $this->conn = new PDO($q, $this->user, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4'));
             }
             catch (Exception $e) {
+            	var_dump($e);
                 die('Erreur : ' . $e->getMessage());
+                
             }
  
             if (!$this->conn) {

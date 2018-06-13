@@ -244,7 +244,8 @@ class RetrieveTweet
     private function getLastCreatedAt($tweets)
     {
         $count = count($tweets->statuses);
-        $lastCreatedAt = new DateTime(($tweets->statuses)[$count-1]->created_at, new \DateTimeZone("UTC"));
+        $statuses = $tweets->statuses;
+        $lastCreatedAt = new DateTime($statuses[$count-1]->created_at, new \DateTimeZone("UTC"));
         $lastCreatedAt->setTimezone(new \DateTimeZone('Asia/Tokyo'));
 
         return [$lastCreatedAt->format('Y-m-d'), $lastCreatedAt->format('H:i:s')];
