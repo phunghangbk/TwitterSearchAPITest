@@ -62,6 +62,7 @@ class RetrieveTweet
         $twitter = $this->authenticateTwitter($access_token, $access_token_secret, $consumer_key, $consumer_secret);
         try {
             $tweets = $this->retrieveAllTweetsWhenAPIStop($twitter, $startDate, $startTime, $endDate, $endTime, $request['keyword']);
+            var_dump($tweets);
             $tweets = $this->sort($tweets);
             $tweet = new Tweet($this->bdd);
             $searchinfo = new SearchInfo($this->bdd);

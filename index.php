@@ -11,8 +11,15 @@ $twitter = new RetrieveTweet();
 $request = request();
 $result = $twitter->getTweets($access_token, $access_token_secret, $consumer_key, $consumer_secret, $request);
 $result = json_decode($result, true);
-
-echo mb_convert_encoding($result['message'], 'SHIFT-JIS', 'UTF-8');
+if (! empty($result['error']['keyword'])) {
+	echo $result['error']['keyword'];
+} else if (! empty($result['error']['empty_time'])) {
+	echo $result['error']['empty_time'];
+} else if (! empty($result['error']['time'])) {
+	echo $result['error']['time'];
+} else {
+	echo mb_convert_encoding($result['message'], 'SHIFT-JIS', 'UTF-8');
+}
 
 function request()
 {
