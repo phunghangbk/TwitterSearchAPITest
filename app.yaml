@@ -14,9 +14,9 @@ env_variables:
   DB_DATABASE: retrievetweets
   DB_USERNAME: root
   DB_PASSWORD: 27051993Hang
-  DB_SOCKET: "/cloudsql/twittersearchapitest:asia-northeast1:twittersearchapitest"
+  DB_SOCKET: #"/cloudsql/project:region:cloudsql-instance"
 
 beta_settings:
     # for Cloud SQL, set this value to the Cloud SQL connection name,
     # e.g. "project:region:cloudsql-instance"
-    cloud_sql_instances: "twittersearchapitest:asia-northeast1:twittersearchapitest"
+    cloud_sql_instances: #"project:region:cloudsql-instance"
